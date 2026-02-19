@@ -25,10 +25,6 @@ export function Testimonials() {
           </Card>
         ))}
       </div>
-
-      <p className="mt-4 text-xs text-muted">
-        Replace testimonials in <code className="rounded bg-black/5 px-1 py-0.5">src/content/siteData.ts</code>.
-      </p>
     </Section>
   );
 }
