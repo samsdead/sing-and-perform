@@ -4,7 +4,7 @@ import { siteData } from "@/content/siteData";
 
 export function Process() {
   return (
-    <Section id="process">
+    <Section size="md" id="process">
       <div className="max-w-2xl">
         <h2 className="text-3xl font-extrabold tracking-tight">How it works</h2>
         <p className="mt-2 text-ink/80">

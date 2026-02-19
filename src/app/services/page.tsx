@@ -15,7 +15,7 @@ export const metadata = buildMetadata({
 export default function ServicesPage() {
   return (
     <>
-      <Section className="pt-10 sm:pt-14">
+      <Section size="md" className="pt-8 sm:pt-10">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
@@ -46,7 +46,7 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      <Section>
+      <Section size="md">
         <div className="grid gap-6 lg:grid-cols-2">
           {siteData.services.map((s) => (
             <Card key={s.title}>
@@ -72,7 +72,7 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      <Section className="bg-white/40">
+      <Section size="tight" className="bg-white/40">
         <div className="rounded-2xl bg-white p-8 shadow-soft ring-1 ring-black/5">
           <h2 className="text-2xl font-extrabold tracking-tight">Not sure which service fits?</h2>
           <p className="mt-2 text-ink/80">

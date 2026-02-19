@@ -9,7 +9,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <Section className="bg-white/40" id="faq">
+    <Section size="md" className="bg-white/40" id="faq">
       <div className="max-w-2xl">
         <h2 className="text-3xl font-extrabold tracking-tight">FAQ</h2>
         <p className="mt-2 text-ink/80">
