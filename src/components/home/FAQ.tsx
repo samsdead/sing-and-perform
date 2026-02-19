@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Section } from "@/src/components/ui/Section";
-import { siteData } from "@/src/content/siteData";
-import { cn } from "@/src/lib/utils";
+import { Section } from "@/components/ui/Section";
+import { siteData } from "@/content/siteData";
+import { cn } from "@/lib/utils";
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

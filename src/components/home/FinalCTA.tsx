@@ -1,6 +1,6 @@
-import { Section } from "@/src/components/ui/Section";
-import { Button } from "@/src/components/ui/Button";
-import { siteData } from "@/src/content/siteData";
+import { Section } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
+import { siteData } from "@/content/siteData";
 
 export function FinalCTA() {
   return (

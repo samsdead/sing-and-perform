@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { cn } from "@/src/lib/utils";
-import { siteData } from "@/src/content/siteData";
-import { Button } from "@/src/components/ui/Button";
+import { cn } from "@/lib/utils";
+import { siteData } from "@/content/siteData";
+import { Button } from "@/components/ui/Button";
 
 const navItems = [
   { href: "/", label: "Home" },

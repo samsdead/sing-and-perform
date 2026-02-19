@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Section } from "@/src/components/ui/Section";
-import { Card, CardContent, CardHeader } from "@/src/components/ui/Card";
-import { Button } from "@/src/components/ui/Button";
-import { siteData } from "@/src/content/siteData";
+import { Section } from "@/components/ui/Section";
+import { Card, CardContent, CardHeader } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { siteData } from "@/content/siteData";
 
 export function ServicesOverview() {
   const topServices = siteData.services.slice(0, 3);

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Navbar } from "@/src/components/site/Navbar";
-import { Footer } from "@/src/components/site/Footer";
-import { siteData } from "@/src/content/siteData";
-import { buildMetadata } from "@/src/lib/seo";
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
+import { siteData } from "@/content/siteData";
+import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata();
 

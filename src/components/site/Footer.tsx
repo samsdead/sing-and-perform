@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Container } from "@/src/components/ui/Container";
-import { siteData } from "@/src/content/siteData";
+import { Container } from "@/components/ui/Container";
+import { siteData } from "@/content/siteData";
 
 export function Footer() {
   return (

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import type { ContactPayload } from "@/src/lib/validators";
-import { validateContactPayload } from "@/src/lib/validators";
+import type { ContactPayload } from "@/lib/validators";
+import { validateContactPayload } from "@/lib/validators";
 
 export async function POST(req: Request) {
   const body = (await req.json()) as ContactPayload;

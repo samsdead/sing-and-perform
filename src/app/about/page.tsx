@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { buildMetadata } from "@/src/lib/seo";
-import { Section } from "@/src/components/ui/Section";
-import { Card, CardContent } from "@/src/components/ui/Card";
-import { Button } from "@/src/components/ui/Button";
-import { siteData } from "@/src/content/siteData";
+import { buildMetadata } from "@/lib/seo";
+import { Section } from "@/components/ui/Section";
+import { Card, CardContent } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { siteData } from "@/content/siteData";
 
 export const metadata = buildMetadata({
   title: "About",
@@ -38,8 +38,8 @@ export default function AboutPage() {
 
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-soft ring-1 ring-black/5">
             <Image
-              src="/images/studio-placeholder.svg"
-              alt="Placeholder studio image. Replace with a real photo."
+              src="/images/studio-placeholder.jpeg"
+              alt="Singing lesson studio"
               width={1200}
               height={900}
               className="h-auto w-full"
