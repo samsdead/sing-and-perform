@@ -50,18 +50,19 @@ export function MobileNav() {
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-0 z-50 transition",
+          "fixed inset-0 z-50 isolate transition",
           open ? "pointer-events-auto" : "pointer-events-none"
         )}
         aria-hidden={!open}
       >
-        <div className={cn("absolute inset-0 bg-black/40", open ? "opacity-100" : "opacity-0")} />
+        <div className={cn("absolute inset-0 z-0 bg-black/40", open ? "opacity-100" : "opacity-0")} />
         <div
           ref={panelRef}
           className={cn(
-            "absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white p-6 text-ink shadow-2xl ring-1 ring-black/10 transition",
+            "absolute right-0 top-0 z-10 h-full w-[88%] max-w-sm p-6 shadow-2xl ring-1 ring-black/10 transition",
             open ? "translate-x-0" : "translate-x-full"
           )}
+          style={{ backgroundColor: "#ffffff" }}
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation"
