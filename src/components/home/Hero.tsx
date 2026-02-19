@@ -6,7 +6,7 @@ import { siteData } from "@/content/siteData";
 
 export function Hero() {
   return (
-    <Section className="pt-10 sm:pt-14">
+    <Section size="md" className="pt-8 sm:pt-10">
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <div>
           <Badge>Friendly singing lessons • {siteData.locationServed}</Badge>

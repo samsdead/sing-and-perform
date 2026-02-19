@@ -4,7 +4,7 @@ import { siteData } from "@/content/siteData";
 
 export function FinalCTA() {
   return (
-    <Section className="pb-20">
+    <Section size="lg">
       <div className="relative overflow-hidden rounded-[2rem] bg-ink p-8 text-white shadow-soft sm:p-10">
         <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/35 blur-2xl" aria-hidden />
         <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent2/25 blur-2xl" aria-hidden />

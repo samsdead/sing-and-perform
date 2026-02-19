@@ -4,7 +4,7 @@ import { siteData } from "@/content/siteData";
 
 export function Testimonials() {
   return (
-    <Section className="bg-white/40" id="testimonials">
+    <Section size="md" className="bg-white/40" id="testimonials">
       <div className="max-w-2xl">
         <h2 className="text-3xl font-extrabold tracking-tight">What students say</h2>
         <p className="mt-2 text-ink/80">
