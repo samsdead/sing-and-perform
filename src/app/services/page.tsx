@@ -15,7 +15,7 @@ export const metadata = buildMetadata({
 export default function ServicesPage() {
   return (
     <>
-      <Section size="md" className="pt-8 sm:pt-10">
+      <Section size="md" className="pt-6 sm:pt-8">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">

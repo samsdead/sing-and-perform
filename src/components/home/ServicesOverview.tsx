@@ -8,7 +8,7 @@ export function ServicesOverview() {
   const topServices = siteData.services.slice(0, 3);
 
   return (
-    <Section size="md" className="pt-8" id="services">
+    <Section size="md" className="pt-6" id="services">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 className="text-3xl font-extrabold tracking-tight">Services</h2>
