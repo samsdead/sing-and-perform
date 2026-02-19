@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils";
 import { Container } from "./Container";
 
 const sizeToPadding = {
-  tight: "py-8 sm:py-10",
-  md: "py-12 sm:py-14",
-  lg: "py-16 sm:py-20"
+  tight: "py-5 sm:py-6",
+  md: "py-6 sm:py-8",
+  lg: "py-8 sm:py-12"
 } as const;
 
 export function Section({

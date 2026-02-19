@@ -59,7 +59,7 @@ export function MobileNav() {
         <div
           ref={panelRef}
           className={cn(
-            "absolute right-0 top-0 h-full w-[88%] max-w-sm bg-canvas p-6 shadow-soft transition",
+            "absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white p-6 text-ink shadow-2xl ring-1 ring-black/10 transition",
             open ? "translate-x-0" : "translate-x-full"
           )}
           role="dialog"
@@ -67,9 +67,9 @@ export function MobileNav() {
           aria-label="Mobile navigation"
         >
           <div className="flex items-center justify-between">
-            <div className="font-extrabold tracking-tight">{siteData.businessName}</div>
+            <div className="font-extrabold tracking-tight text-ink">{siteData.businessName}</div>
             <button
-              className="rounded-xl bg-black/5 px-3 py-2 text-sm font-semibold"
+              className="rounded-xl bg-black/10 px-3 py-2 text-sm font-semibold text-ink"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
             >
@@ -77,12 +77,12 @@ export function MobileNav() {
             </button>
           </div>
 
-          <nav className="mt-8 space-y-2">
+          <nav className="mt-8 space-y-2" aria-label="Mobile navigation links">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block rounded-xl px-4 py-3 text-base font-semibold hover:bg-black/5"
+                className="block rounded-xl px-4 py-3 text-base font-semibold text-ink hover:bg-black/5"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
