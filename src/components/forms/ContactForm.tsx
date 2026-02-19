@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Input, Textarea } from "@/src/components/ui/Input";
-import { Button } from "@/src/components/ui/Button";
-import type { ContactPayload } from "@/src/lib/validators";
-import { validateContactPayload } from "@/src/lib/validators";
+import { Input, Textarea } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
+import type { ContactPayload } from "@/lib/validators";
+import { validateContactPayload } from "@/lib/validators";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -183,17 +183,10 @@ export function ContactForm() {
 
         {status === "error" ? (
           <p className="rounded-xl bg-accent/15 p-3 text-ink">
-            Something went wrong. Please try again — or set up Formspree using{" "}
-            <code className="rounded bg-black/5 px-1 py-0.5">NEXT_PUBLIC_FORMSPREE_ENDPOINT</code>.
+            Something went wrong. Please try again.
           </p>
         ) : null}
       </div>
-
-      <p className="text-xs text-muted">
-        Free-first setup: create a Formspree form and set{" "}
-        <code className="rounded bg-black/5 px-1 py-0.5">NEXT_PUBLIC_FORMSPREE_ENDPOINT</code>{" "}
-        in your Vercel env vars. Otherwise this demo uses a local API route.
-      </p>
     </form>
   );
 }

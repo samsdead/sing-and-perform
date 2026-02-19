@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { buildMetadata } from "@/src/lib/seo";
-import { Section } from "@/src/components/ui/Section";
-import { Card, CardContent, CardHeader } from "@/src/components/ui/Card";
-import { Button } from "@/src/components/ui/Button";
-import { siteData } from "@/src/content/siteData";
+import { buildMetadata } from "@/lib/seo";
+import { Section } from "@/components/ui/Section";
+import { Card, CardContent, CardHeader } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { siteData } from "@/content/siteData";
 
 export const metadata = buildMetadata({
   title: "Services",
@@ -36,8 +36,8 @@ export default function ServicesPage() {
 
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-soft ring-1 ring-black/5">
             <Image
-              src="/images/lesson-placeholder.svg"
-              alt="Placeholder image for lessons. Replace with a real photo."
+              src="/images/lesson-placeholder.jpg"
+              alt="Singing lessons and coaching"
               width={1200}
               height={900}
               className="h-auto w-full"

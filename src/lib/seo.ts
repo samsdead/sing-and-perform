@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteData } from "@/src/content/siteData";
+import { siteData } from "@/content/siteData";
 
 export function buildMetadata(params?: {
   title?: string;
@@ -27,7 +27,7 @@ export function buildMetadata(params?: {
       type: "website",
       images: [
         {
-          url: "/images/hero-placeholder.svg",
+          url: "/images/hero-placeholder.png",
           width: 1600,
           height: 900,
           alt: `${siteData.businessName} — Singing lessons in ${siteData.locationServed}`
@@ -38,7 +38,7 @@ export function buildMetadata(params?: {
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/hero-placeholder.svg"]
+      images: ["/images/hero-placeholder.png"]
     }
   };
 }

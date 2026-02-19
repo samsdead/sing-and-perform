@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Section } from "@/src/components/ui/Section";
-import { Button } from "@/src/components/ui/Button";
-import { Badge } from "@/src/components/ui/Badge";
-import { siteData } from "@/src/content/siteData";
+import { Section } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
+import { siteData } from "@/content/siteData";
 
 export function Hero() {
   return (
@@ -46,17 +46,14 @@ export function Hero() {
           <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-accent/25 via-accent2/15 to-black/5 blur-2xl" />
           <div className="overflow-hidden rounded-[2rem] bg-white shadow-soft ring-1 ring-black/5">
             <Image
-              src="/images/hero-placeholder.svg"
-              alt="Placeholder hero image. Replace with a real lesson or performance photo."
+              src="/images/hero-placeholder.png"
+              alt="Singing lessons and performance coaching"
               width={1600}
               height={900}
               priority
               className="h-auto w-full"
             />
           </div>
-          <p className="mt-3 text-xs text-muted">
-            Replace the image in <code className="rounded bg-black/5 px-1 py-0.5">public/images/hero-placeholder.svg</code>.
-          </p>
         </div>
       </div>
     </Section>

@@ -1,6 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #FFF9F2;
+  --color-ink: #0B1020;
+  --color-surface: #FFFFFF;
+  --color-accent: #FF4D6D;
+  --color-accent2: #2EC4B6;
+  --color-muted: #6B7280;
+}
 
 :root {
   color-scheme: light;
@@ -11,8 +18,8 @@ html, body {
 }
 
 body {
-  background: theme(colors.canvas);
-  color: theme(colors.ink);
+  background: var(--color-canvas);
+  color: var(--color-ink);
 }
 
 /* Accessible focus ring */

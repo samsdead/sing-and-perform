@@ -1,11 +1,11 @@
-import { Hero } from "@/src/components/home/Hero";
-import { TrustBadges } from "@/src/components/home/TrustBadges";
-import { ServicesOverview } from "@/src/components/home/ServicesOverview";
-import { Testimonials } from "@/src/components/home/Testimonials";
-import { Process } from "@/src/components/home/Process";
-import { FAQ } from "@/src/components/home/FAQ";
-import { FinalCTA } from "@/src/components/home/FinalCTA";
-import { buildMetadata } from "@/src/lib/seo";
+import { Hero } from "@/components/home/Hero";
+import { TrustBadges } from "@/components/home/TrustBadges";
+import { ServicesOverview } from "@/components/home/ServicesOverview";
+import { Testimonials } from "@/components/home/Testimonials";
+import { Process } from "@/components/home/Process";
+import { FAQ } from "@/components/home/FAQ";
+import { FinalCTA } from "@/components/home/FinalCTA";
+import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Singing Lessons in Milton Keynes",

@@ -1,5 +1,5 @@
-import { Section } from "@/src/components/ui/Section";
-import { siteData } from "@/src/content/siteData";
+import { Section } from "@/components/ui/Section";
+import { siteData } from "@/content/siteData";
 
 export function TrustBadges() {
   return (

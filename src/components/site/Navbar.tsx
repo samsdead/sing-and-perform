@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Container } from "@/src/components/ui/Container";
-import { Button } from "@/src/components/ui/Button";
-import { siteData } from "@/src/content/siteData";
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { siteData } from "@/content/siteData";
 import { MobileNav } from "./MobileNav";
 
 const navItems = [

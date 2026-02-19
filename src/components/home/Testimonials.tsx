@@ -1,6 +1,6 @@
-import { Section } from "@/src/components/ui/Section";
-import { Card, CardContent } from "@/src/components/ui/Card";
-import { siteData } from "@/src/content/siteData";
+import { Section } from "@/components/ui/Section";
+import { Card, CardContent } from "@/components/ui/Card";
+import { siteData } from "@/content/siteData";
 
 export function Testimonials() {
   return (
