@@ -47,6 +47,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-black/5 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>Concept redesign – not affiliated with Sing & Perform MK.</p>
           <p>© {new Date().getFullYear()} {siteData.businessName}. All rights reserved.</p>
           <p>
             Built with Next.js •{" "}
