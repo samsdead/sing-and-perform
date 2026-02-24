@@ -8,6 +8,16 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata();
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: siteData.businessName,
+    url: siteData.siteUrl,
+    areaServed: siteData.locationServed,
+    ...(siteData.phoneDisplay ? { telephone: siteData.phoneDisplay } : {}),
+    ...(siteData.email ? { email: siteData.email } : {})
+  };
+
   return (
     <html lang="en-GB">
       <body className="min-h-dvh antialiased">
@@ -24,20 +34,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Footer />
 
-        {/* Lightweight LocalBusiness schema (replace phone/email when ready) */}
         <script
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: siteData.businessName,
-              url: siteData.siteUrl,
-              areaServed: siteData.locationServed,
-              telephone: siteData.phoneDisplay,
-              email: siteData.email
-            })
+            __html: JSON.stringify(localBusinessSchema)
           }}
         />
       </body>

@@ -3,6 +3,9 @@ import { Container } from "@/components/ui/Container";
 import { siteData } from "@/content/siteData";
 
 export function Footer() {
+  const hasInstagram = Boolean(siteData.socials.instagram);
+  const hasFacebook = Boolean(siteData.socials.facebook);
+
   return (
     <footer className="border-t border-black/5 bg-canvas">
       <Container className="py-10">
@@ -26,31 +29,37 @@ export function Footer() {
             <div className="text-sm font-bold">Contact</div>
             <ul className="mt-3 space-y-2 text-sm text-ink/80">
               <li>
-                <span className="font-semibold">Phone:</span> {siteData.phoneDisplay}
+                <span className="font-semibold">Phone:</span> {siteData.phoneDisplay || "Available on request"}
               </li>
               <li>
-                <span className="font-semibold">Email:</span> {siteData.email}
+                <span className="font-semibold">Email:</span> {siteData.email || "Available on request"}
               </li>
-              <li className="pt-2">
-                <div className="text-sm font-bold">Social</div>
-                <div className="mt-2 flex gap-3">
-                  <a className="hover:underline" href={siteData.socials.instagram} target="_blank" rel="noreferrer">
-                    Instagram
-                  </a>
-                  <a className="hover:underline" href={siteData.socials.facebook} target="_blank" rel="noreferrer">
-                    Facebook
-                  </a>
-                </div>
-              </li>
+              {hasInstagram || hasFacebook ? (
+                <li className="pt-2">
+                  <div className="text-sm font-bold">Social</div>
+                  <div className="mt-2 flex gap-3">
+                    {hasInstagram ? (
+                      <a className="hover:underline" href={siteData.socials.instagram} target="_blank" rel="noreferrer">
+                        Instagram
+                      </a>
+                    ) : null}
+                    {hasFacebook ? (
+                      <a className="hover:underline" href={siteData.socials.facebook} target="_blank" rel="noreferrer">
+                        Facebook
+                      </a>
+                    ) : null}
+                  </div>
+                </li>
+              ) : null}
             </ul>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-black/5 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>Concept redesign – not affiliated with Sing & Perform MK.</p>
-          <p>© {new Date().getFullYear()} {siteData.businessName}. All rights reserved.</p>
+          <p>Serving students in {siteData.locationServed} and online.</p>
+          <p>Copyright {new Date().getFullYear()} {siteData.businessName}. All rights reserved.</p>
           <p>
-            Built with Next.js •{" "}
+            Built with Next.js | {" "}
             <a className="hover:underline" href="https://vercel.com" target="_blank" rel="noreferrer">
               Deploy on Vercel
             </a>
