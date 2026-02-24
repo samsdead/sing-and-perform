@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Input, Textarea } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import type { ContactPayload } from "@/lib/validators";
@@ -18,8 +18,6 @@ export function ContactForm() {
     preferredTime: "",
     message: ""
   });
-
-  const canSubmit = useMemo(() => status !== "submitting", [status]);
 
   const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
 
@@ -169,8 +167,14 @@ export function ContactForm() {
       </div>
 
       <div className="pt-2">
-        <Button type="submit" size="lg" className="w-full sm:w-auto" ariaLabel="Submit contact form">
-          {status === "submitting" ? "Sending…" : "Send message"}
+        <Button
+          type="submit"
+          size="lg"
+          className="w-full sm:w-auto"
+          ariaLabel="Submit contact form"
+          disabled={status === "submitting"}
+        >
+          {status === "submitting" ? "Sending..." : "Send message"}
         </Button>
       </div>
 

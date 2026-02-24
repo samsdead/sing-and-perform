@@ -24,6 +24,7 @@ export function Button(props: {
   href?: string;
   onClick?: () => void;
   type?: "button" | "submit";
+  disabled?: boolean;
   variant?: Variant;
   size?: Size;
   className?: string;
@@ -34,6 +35,7 @@ export function Button(props: {
     href,
     onClick,
     type = "button",
+    disabled = false,
     variant = "primary",
     size = "md",
     className,
@@ -61,7 +63,13 @@ export function Button(props: {
   }
 
   return (
-    <button className={cls} onClick={onClick} type={type} aria-label={ariaLabel}>
+    <button
+      className={cn(cls, disabled && "cursor-not-allowed opacity-60")}
+      onClick={onClick}
+      type={type}
+      aria-label={ariaLabel}
+      disabled={disabled}
+    >
       {children}
     </button>
   );

@@ -18,6 +18,13 @@ export function buildMetadata(params?: {
     description,
     metadataBase: new URL(siteData.siteUrl),
     alternates: { canonical: url.toString() },
+    keywords: [
+      "singing lessons",
+      "vocal coach",
+      "performance coaching",
+      "audition preparation",
+      siteData.locationServed
+    ],
     openGraph: {
       title,
       description,
@@ -30,7 +37,7 @@ export function buildMetadata(params?: {
           url: "/images/hero-placeholder.png",
           width: 1600,
           height: 900,
-          alt: `${siteData.businessName} — Singing lessons in ${siteData.locationServed}`
+          alt: `${siteData.businessName} - Singing lessons in ${siteData.locationServed}`
         }
       ]
     },

@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
 // Small security headers (safe defaults for marketing sites)
-export function middleware(req: NextRequest) {
+export function proxy() {
   const res = NextResponse.next();
 
   res.headers.set("X-Content-Type-Options", "nosniff");
