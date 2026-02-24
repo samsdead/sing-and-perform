@@ -56,7 +56,9 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-black/5 pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>Serving students in {siteData.locationServed} and online.</p>
+          <p className="font-semibold text-ink/90">
+            Demo website only. Not affiliated with or endorsed by any business named Sing and Perform.
+          </p>
           <p>Copyright {new Date().getFullYear()} {siteData.businessName}. All rights reserved.</p>
           <p>
             Built with Next.js | {" "}
