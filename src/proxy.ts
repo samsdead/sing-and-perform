@@ -6,11 +6,21 @@ export function proxy() {
 
   res.headers.set("X-Content-Type-Options", "nosniff");
   res.headers.set("X-Frame-Options", "DENY");
-  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.headers.set("Referrer-Policy", "no-referrer");
   res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
-  // Content-Security-Policy is intentionally not set here to avoid breaking embeds.
-  // If you add embeds later, set a CSP carefully.
+  if (process.env.NODE_ENV === "production") {
+    res.headers.set("Content-Security-Policy", [
+      "default-src 'self'",
+      "base-uri 'none'",
+      "form-action 'self'",
+      "frame-ancestors 'none'",
+      "object-src 'none'",
+      "img-src 'self' data:",
+      "script-src 'self' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline'"
+    ].join("; "));
+  }
 
   return res;
 }
