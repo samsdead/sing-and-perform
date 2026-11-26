@@ -4,12 +4,13 @@ import { useState } from "react";
 import { Input, Textarea } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import type { ContactPayload } from "@/lib/validators";
-import { validateContactPayload } from "@/lib/validators";
+import { contactLimits, validateContactPayload } from "@/lib/validators";
 
-type Status = "idle" | "submitting" | "success" | "error";
+export type ContactStatus = "sent" | "invalid" | "unavailable" | "busy";
+type Status = "idle" | "submitting" | ContactStatus;
 
-export function ContactForm() {
-  const [status, setStatus] = useState<Status>("idle");
+export function ContactForm({ available, initialStatus }: { available: boolean; initialStatus?: ContactStatus }) {
+  const [status, setStatus] = useState<Status>(initialStatus ?? "idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState<ContactPayload>({
     name: "",
@@ -19,52 +20,36 @@ export function ContactForm() {
     message: ""
   });
 
-  const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
-
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!available || status === "submitting") return;
     setErrors({});
-    setStatus("idle");
 
     const validation = validateContactPayload(form);
     if (!validation.ok) {
       setErrors(validation.errors);
-      setStatus("error");
+      setStatus("invalid");
       return;
     }
 
     setStatus("submitting");
 
     try {
-      // Free-first option:
-      // If NEXT_PUBLIC_FORMSPREE_ENDPOINT is set, send directly to Formspree.
-      if (formspreeEndpoint) {
-        const resp = await fetch(formspreeEndpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          },
-          body: JSON.stringify(form)
-        });
-
-        if (!resp.ok) throw new Error("Formspree request failed");
-        setStatus("success");
-        return;
-      }
-
-      // Default: hit internal API route (validates + returns success).
-      // Replace this with Resend/SMTP later if you prefer.
       const resp = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(validation.data)
       });
-
-      if (!resp.ok) throw new Error("API request failed");
-      setStatus("success");
+      if (resp.ok) {
+        setForm({ name: "", email: "", phone: "", preferredTime: "", message: "" });
+        setStatus("sent");
+      } else if (resp.status === 429) {
+        setStatus("busy");
+      } else {
+        setStatus("unavailable");
+      }
     } catch {
-      setStatus("error");
+      setStatus("unavailable");
     }
   }
 
@@ -73,7 +58,8 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4" aria-describedby="contact-form-status">
+    <form action="/api/contact" method="post" onSubmit={onSubmit} className="space-y-4" aria-describedby="contact-form-status">
+      <fieldset disabled={!available || status === "submitting"} className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="text-sm font-bold" htmlFor="name">Name</label>
@@ -82,6 +68,8 @@ export function ContactForm() {
               id="name"
               name="name"
               autoComplete="name"
+              minLength={2}
+              maxLength={contactLimits.name}
               value={form.name}
               onChange={(e) => setField("name", e.target.value)}
               placeholder="Your name"
@@ -103,6 +91,7 @@ export function ContactForm() {
               name="email"
               type="email"
               autoComplete="email"
+              maxLength={contactLimits.email}
               value={form.email}
               onChange={(e) => setField("email", e.target.value)}
               placeholder="you@example.com"
@@ -125,6 +114,7 @@ export function ContactForm() {
               id="phone"
               name="phone"
               autoComplete="tel"
+              maxLength={contactLimits.phone}
               value={form.phone ?? ""}
               onChange={(e) => setField("phone", e.target.value)}
               placeholder="07xxx xxxxxx"
@@ -138,6 +128,7 @@ export function ContactForm() {
             <Input
               id="preferredTime"
               name="preferredTime"
+              maxLength={contactLimits.preferredTime}
               value={form.preferredTime ?? ""}
               onChange={(e) => setField("preferredTime", e.target.value)}
               placeholder="e.g., weekday evenings"
@@ -153,6 +144,8 @@ export function ContactForm() {
             id="message"
             name="message"
             rows={6}
+            minLength={10}
+            maxLength={contactLimits.message}
             value={form.message}
             onChange={(e) => setField("message", e.target.value)}
             placeholder="Tell us what you’d like help with (goals, style, deadlines, etc.)"
@@ -172,23 +165,34 @@ export function ContactForm() {
           size="lg"
           className="w-full sm:w-auto"
           ariaLabel="Submit contact form"
-          disabled={status === "submitting"}
+          disabled={!available || status === "submitting"}
         >
           {status === "submitting" ? "Sending..." : "Send message"}
         </Button>
       </div>
+      </fieldset>
+
+      {available ? (
+        <p className="text-xs text-muted">We use Formspree to deliver your details and message so we can reply.</p>
+      ) : null}
 
       <div id="contact-form-status" className="text-sm" aria-live="polite">
-        {status === "success" ? (
+        {status === "sent" ? (
           <p className="rounded-xl bg-accent2/15 p-3 text-ink">
             Thanks! Your message has been sent. We’ll get back to you soon.
           </p>
         ) : null}
 
-        {status === "error" ? (
+        {status === "invalid" ? (
           <p className="rounded-xl bg-accent/15 p-3 text-ink">
-            Something went wrong. Please try again.
+            Please check your details and try again.
           </p>
+        ) : null}
+        {status === "busy" ? (
+          <p className="rounded-xl bg-accent/15 p-3 text-ink">The form is busy. Please try again in a minute.</p>
+        ) : null}
+        {!available || status === "unavailable" ? (
+          <p className="rounded-xl bg-accent/15 p-3 text-ink">The form is unavailable. Please use the direct contact details if listed.</p>
         ) : null}
       </div>
     </form>

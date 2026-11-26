@@ -36,14 +36,15 @@ Set in `.env.local` for development and in your hosting provider for production.
 - `NEXT_PUBLIC_PHONE_E164`: Dialable phone format (example: `+447...`)
 - `NEXT_PUBLIC_INSTAGRAM_URL`: Optional social URL
 - `NEXT_PUBLIC_FACEBOOK_URL`: Optional social URL
-- `NEXT_PUBLIC_FORMSPREE_ENDPOINT`: Optional Formspree endpoint
+- `FORMSPREE_ENDPOINT` is the optional server-only Formspree URL, in the form `https://formspree.io/f/FORM_ID`.
 
-If `NEXT_PUBLIC_FORMSPREE_ENDPOINT` is not set, form submission falls back to `/api/contact` (validation + success response), and you can add delivery logic there.
+The browser submits to the site's own POST endpoint. The server forwards the submitted fields to Formspree only when delivery is configured. The form is disabled when delivery is unavailable. Set `FORMSPREE_ENDPOINT` in your hosting environment. Existing deployments can migrate from `NEXT_PUBLIC_FORMSPREE_ENDPOINT`, which the server accepts as a fallback.
 
 ## Quality Checks
 ```bash
 npm run lint
 npm run build
+npm run test:contact
 ```
 
 ## Deploy
