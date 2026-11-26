@@ -2,8 +2,9 @@ import { buildMetadata } from "@/lib/seo";
 import { Section } from "@/components/ui/Section";
 import { Card, CardContent } from "@/components/ui/Card";
 import { siteData } from "@/content/siteData";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { ContactForm, type ContactStatus } from "@/components/forms/ContactForm";
 import { Badge } from "@/components/ui/Badge";
+import { contactEndpoint } from "@/lib/contact-delivery";
 
 export const metadata = buildMetadata({
   title: "Contact",
@@ -12,7 +13,11 @@ export const metadata = buildMetadata({
   path: "/contact"
 });
 
-export default function ContactPage() {
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ status?: string | string[] }> }) {
+  const { status } = await searchParams;
+  const available = Boolean(contactEndpoint());
+  const statuses: readonly ContactStatus[] = ["sent", "invalid", "unavailable", "busy"];
+  const initialStatus = available ? statuses.find((value) => value === status) : undefined;
   return (
     <>
       <Section size="md" className="pt-6 sm:pt-8">
@@ -31,7 +36,7 @@ export default function ContactPage() {
             <CardContent className="flex h-full flex-col pt-6">
               <h2 className="text-lg font-extrabold">Send a message</h2>
               <div className="mt-6">
-                <ContactForm />
+                <ContactForm available={available} initialStatus={initialStatus} />
               </div>
             </CardContent>
           </Card>
